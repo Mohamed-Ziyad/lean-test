@@ -19,7 +19,7 @@ const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 fs.writeFileSync('google_credentials.json', JSON.stringify(credentials));
 
 // Set the environment variable for the credentials file
-process.env.GOOGLE_APPLICATION_CREDENTIALS = 'google_credentials.json';
+process.env.CREDENTIALS = 'google_credentials.json';
 
 const client = new SpeechClient();
 
