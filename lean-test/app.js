@@ -4,6 +4,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const { SpeechClient } = require("@google-cloud/speech");
 const fs = require("fs")
+const dotenv = require('dotenv')
 
 const server = http.createServer(app);
 const io = socketIo(server, {
