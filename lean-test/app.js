@@ -15,12 +15,12 @@ const io = socketIo(server, {
 });
 
 // Ensure this path is correct and the file exists
-const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+const credentials = JSON.parse(process.env.CREDENTIALS);
 // Write the credentials to a temp file
 fs.writeFileSync('google_credentials.json', JSON.stringify(credentials));
 
 // Set the environment variable for the credentials file
-process.env.CREDENTIALS = 'google_credentials.json';
+process.env.GOOGLE_APPLICATION_CREDENTIALS = 'google_credentials.json';
 
 const client = new SpeechClient();
 
