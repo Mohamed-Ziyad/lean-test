@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+
+
 const socketIo = require("socket.io");
 const { SpeechClient } = require("@google-cloud/speech");
-const fs = require("fs")
-const dotenv = require('dotenv')
 
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -15,13 +15,7 @@ const io = socketIo(server, {
 });
 
 // Ensure this path is correct and the file exists
-const credentials = JSON.parse(process.env.CREDENTIALS);
-// Write the credentials to a temp file
-fs.writeFileSync('google_credentials.json', JSON.stringify(credentials));
-
-// Set the environment variable for the credentials file
-process.env.GOOGLE_APPLICATION_CREDENTIALS = 'google_credentials.json';
-
+process.env.GOOGLE_APPLICATION_CREDENTIALS = "googlecreds.json";
 const client = new SpeechClient();
 
 const request = {
@@ -29,7 +23,6 @@ const request = {
     encoding: "LINEAR16",
     sampleRateHertz: 16000,
     languageCode: "ar-SA", // Arabic language code
-    // languageCode: "en-US",
     alternativeLanguageCodes: ["en-US"],
     interimResults: true, // Enable interim results
     enableAutomaticPunctuation: true, // Helps with punctuation
@@ -133,4 +126,3 @@ const PORT = 4000;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
